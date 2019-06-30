@@ -1,13 +1,13 @@
 {
     "name": "see-my-files",
-    "version": "0.0.2",
+    "version": "0.0.5",
     "private": false,
-    "main": "/bin/www",
+    "main": "bin/www",
     "scripts": {
-        "start": "/bin/www"
+        "start": "bin/www"
     },
     "bin": {
-        "see-my-files": "/bin/www"
+        "see-my-files": "bin/www"
     },
     "dependencies": {
         "cookie-parser": "~1.4.4",
