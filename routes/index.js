@@ -5,7 +5,7 @@ const fs = require("fs");
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-    let filesInsideDirectory = fs.readdirSync(`${__dirname}\\..\\..\\`);
+    let filesInsideDirectory = fs.readdirSync(`${process.cwd()}`);
     res.render('index', { files: filesInsideDirectory });
 });
 

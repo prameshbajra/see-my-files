@@ -1,0 +1,4 @@
+{
+    "port": 3300,
+    "files_to_exclude": ["system", "git", "$", "bin", "opt"]
+}
