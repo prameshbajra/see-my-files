@@ -7,7 +7,6 @@ const utility = require("../utility/utility");
 /* GET home page. */
 router.get(`/`, function (req, res, next) {
     const queryPath = req.query[`path`];
-    console.log(queryPath);
     let filesInsideDirectory = ``;
     if (queryPath) {
         filesInsideDirectory = fs.readdirSync(`${process.cwd()}/${queryPath}`, { withFileTypes: true });
@@ -17,5 +16,13 @@ router.get(`/`, function (req, res, next) {
     const filteredFiles = utility.filterFiles(filesInsideDirectory);
     res.render(`index`, { files: filteredFiles });
 });
+
+
+/* Download file. */
+router.get(`/download`, (req, res, next) => {
+    const queryPath = req.query[`path`];
+    res.download(`${process.cwd()}${queryPath}`);
+});
+
 
 module.exports = router;

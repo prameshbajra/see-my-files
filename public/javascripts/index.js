@@ -5,5 +5,8 @@ const showFolderContent = (folder) => {
 }
 
 const performFileOperation = (file) => {
-    console.log(file);
+    const currentQuery = window.location.search.split("=")[1] ? window.location.search.split("=")[1] : ``;
+    const filePath = `download/?path=${currentQuery}/${file}`;
+    console.log(`${filePath}`);
+    window.location.href = filePath;
 }
