@@ -11,3 +11,7 @@ a {
 .usable-space {
     margin-top: 5%;
 }
+
+.file {
+    cursor: pointer;
+}

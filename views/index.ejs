@@ -17,6 +17,7 @@
     </script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <script src="/javascripts/index.js"></script>
 </head>
 
 <body>
@@ -29,9 +30,9 @@
         <div class="ui six column centered grid">
             <% files.forEach(function(file) { %>
             <div class="column">
-                <div class="ui items">
+                <div class="ui items file">
                     <i class="folder icon"></i>
-                    <a class="header"><%= file %></a>
+                    <a class="header" onClick="showFileContent('<%= file %>')"><%= file %></a>
                 </div>
             </div>
             <% }); %>
