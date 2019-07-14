@@ -31,8 +31,13 @@
             <% files.forEach(function(file) { %>
             <div class="column">
                 <div class="ui items file">
+                    <% if(file.isDirectory()) {%>
                     <i class="folder icon"></i>
-                    <a class="header" onClick="showFileContent('<%= file %>')"><%= file %></a>
+                    <a class="header" onClick="showFolderContent('<%= file.name %>')"><%= file.name %></a>
+                    <% } else {%>
+                    <i class="file alternate icon"></i>
+                    <a class="header" onClick="performFileOperation('<%= file.name %>')"><%= file.name %></a>
+                    <% } %>
                 </div>
             </div>
             <% }); %>

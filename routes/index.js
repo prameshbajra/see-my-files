@@ -10,9 +10,9 @@ router.get(`/`, function (req, res, next) {
     console.log(queryPath);
     let filesInsideDirectory = ``;
     if (queryPath) {
-        filesInsideDirectory = fs.readdirSync(`${process.cwd()}/${queryPath}`);
+        filesInsideDirectory = fs.readdirSync(`${process.cwd()}/${queryPath}`, { withFileTypes: true });
     } else {
-        filesInsideDirectory = fs.readdirSync(`${process.cwd()}`);
+        filesInsideDirectory = fs.readdirSync(`${process.cwd()}`, { withFileTypes: true });
     }
     const filteredFiles = utility.filterFiles(filesInsideDirectory);
     res.render(`index`, { files: filteredFiles });
