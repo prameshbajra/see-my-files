@@ -9,12 +9,18 @@ router.get(`/`, function (req, res, next) {
     const queryPath = req.query[`path`];
     let filesInsideDirectory = ``;
     if (queryPath) {
-        filesInsideDirectory = fs.readdirSync(`${process.cwd()}/${queryPath}`, { withFileTypes: true });
+        filesInsideDirectory = fs.readdirSync(`${process.cwd()}/${queryPath}`, {
+            withFileTypes: true
+        });
     } else {
-        filesInsideDirectory = fs.readdirSync(`${process.cwd()}`, { withFileTypes: true });
+        filesInsideDirectory = fs.readdirSync(`${process.cwd()}`, {
+            withFileTypes: true
+        });
     }
     const filteredFiles = utility.filterFiles(filesInsideDirectory);
-    res.render(`index`, { files: filteredFiles });
+    res.render(`index`, {
+        files: filteredFiles
+    });
 });
 
 
@@ -22,6 +28,13 @@ router.get(`/`, function (req, res, next) {
 router.get(`/download`, (req, res, next) => {
     const queryPath = req.query[`path`];
     res.download(`${process.cwd()}${queryPath}`);
+});
+
+
+/* Download folder as zip. */
+router.get(`/downloadFolderAsZip`, (req, res, next) => {
+    const queryPath = req.query[`path`];
+    console.log(`${process.cwd()}${queryPath}`);
 });
 
 
