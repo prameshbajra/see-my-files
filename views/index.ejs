@@ -17,7 +17,6 @@
     </script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
-    <script src="/javascripts/index.js"></script>
 </head>
 
 <body>
@@ -43,6 +42,15 @@
             <% }); %>
         </div>
     </div>
+    <!-- Right click menu -->
+    <div class="menu">
+        <ul class="menu-options">
+            <li class="menu-option">Download as zip</li>
+        </ul>
+    </div>
+
+    <!-- Late loading the scripts as this needs to run after some rendering ... -->
+    <script src="/javascripts/index.js"></script>
 </body>
 
 </html>
