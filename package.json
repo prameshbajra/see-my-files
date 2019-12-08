@@ -1,6 +1,6 @@
 {
     "name": "see-my-files",
-    "version": "0.0.12",
+    "version": "0.1.0",
     "private": false,
     "main": "./bin/www",
     "scripts": {
