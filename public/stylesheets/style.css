@@ -62,6 +62,11 @@ button[disabled="false"]:hover .next {
     animation-iteration-count: 2;
 }
 
+.font-small {
+    font-size: 10px !important;
+}
+
+
 @keyframes move {
     from {
         transform: translate(0%);

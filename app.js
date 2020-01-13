@@ -8,7 +8,8 @@ const indexRouter = require('./routes/index');
 
 const app = express();
 
-const config = require("./config.json");
+const config = require(`./config.json`);
+const utility = require(`./utility/utility`);
 
 const port = config.port;
 // view engine setup
@@ -36,11 +37,13 @@ app.use(function (err, req, res, next) {
 
     // render the error page
     res.status(err.status || 500);
-    res.render('error');
+    res.render(`error`);
 });
 
-app.listen(port, "0.0.0.0", () => {
+app.listen(port, `0.0.0.0`, () => {
+    const currentSystemIp = utility.getIPAddress();
     console.log(`File System Connected. Please use port : ${port}`);
+    console.log(`Or, even better. Connect through: http://${currentSystemIp}:${port}`)
 });
 
 module.exports = app;

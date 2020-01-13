@@ -58,5 +58,12 @@ const setPosition = ({
 window.addEventListener("click", e => {
     if (menuVisible) toggleMenu("hide");
 });
-
 // For right click menu ... END
+
+// For file upload by drag and drop ...
+$("#file-upload-area").on("dragenter dragover drop", (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    const files = event.originalEvent.dataTransfer.files;
+    console.log(files);
+})
