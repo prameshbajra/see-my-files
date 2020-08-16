@@ -2,20 +2,20 @@
 let currentFolderSelectedToBeDownloadedAsZip = null;
 
 const showFolderContent = (folder) => {
-    const currentQuery = window.location.search.split("=")[1] ? window.location.search.split("=")[1] : ``;
+    const currentQuery = window.location.search.split(`=`)[1] ? window.location.search.split(`=`)[1] : ``;
     const filePath = `?path=${currentQuery}/${folder}`;
     window.location.href = filePath;
 }
 
 const performFileOperation = (file) => {
-    const currentQuery = window.location.search.split("=")[1] ? window.location.search.split("=")[1] : ``;
+    const currentQuery = window.location.search.split(`=`)[1] ? window.location.search.split(`=`)[1] : ``;
     const filePath = `download/?path=${currentQuery}/${file}`;
     window.location.href = filePath;
 }
 
 const downloadFolderAsZip = () => {
-    let filePath = "";
-    const currentPath = window.location.search.split("path=")[1] || "";
+    let filePath = ``;
+    const currentPath = window.location.search.split(`path=`)[1] || ``;
     if (currentPath.length > 0) {
         filePath = `downloadFolderAsZip/?path=${currentPath}/${currentFolderSelectedToBeDownloadedAsZip}`;
     } else {
@@ -28,9 +28,9 @@ const downloadFolderAsZip = () => {
 
 
 // For right click menu ... START
-const menu = document.querySelector(".menu");
+const menu = document.querySelector(`.menu`);
 let menuVisible = false;
-$(".column .file .folder-area").on("contextmenu", (event) => {
+$(`.column .file .folder-area`).on(`contextmenu`, (event) => {
     event.preventDefault();
     const origin = {
         left: event.pageX,
@@ -42,7 +42,7 @@ $(".column .file .folder-area").on("contextmenu", (event) => {
 })
 
 const toggleMenu = command => {
-    menu.style.display = command === "show" ? "block" : "none";
+    menu.style.display = command === `show` ? `block` : `none`;
     menuVisible = !menuVisible;
 };
 
@@ -52,18 +52,31 @@ const setPosition = ({
 }) => {
     menu.style.left = `${left}px`;
     menu.style.top = `${top}px`;
-    toggleMenu("show");
+    toggleMenu(`show`);
 };
 
-window.addEventListener("click", e => {
-    if (menuVisible) toggleMenu("hide");
+window.addEventListener(`click`, e => {
+    if (menuVisible) toggleMenu(`hide`);
 });
 // For right click menu ... END
 
+
 // For file upload by drag and drop ...
-$("#file-upload-area").on("dragenter dragover drop", (event) => {
+$(`#file-upload-area`).on(`dragenter dragover drop`, async (event) => {
     event.preventDefault();
     event.stopPropagation();
     const files = event.originalEvent.dataTransfer.files;
-    console.log(files);
+    if (files.length > 0) {
+        let formData = new FormData();
+        for (let i = 0; i < files.length; i++) {
+            formData.append(files[i].name, files[i]);
+        }
+        try {
+            const fileUploadResult = await fetch(`/upload/files`, { method: `POST`, body: formData });
+            console.log(`Success : `, fileUploadResult);
+        } catch (error) {
+            console.warn(`Cannot upload file because of this error : >`, error);
+        }
+
+    }
 })
