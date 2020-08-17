@@ -65,18 +65,40 @@ window.addEventListener(`click`, e => {
 $(`#file-upload-area`).on(`dragenter dragover drop`, async (event) => {
     event.preventDefault();
     event.stopPropagation();
-    const files = event.originalEvent.dataTransfer.files;
-    if (files.length > 0) {
-        let formData = new FormData();
-        for (let i = 0; i < files.length; i++) {
-            formData.append(files[i].name, files[i]);
-        }
-        try {
+    try {
+        const files = event.originalEvent.dataTransfer.files;
+        if (files.length > 0) {
+            let formData = new FormData();
+            for (let i = 0; i < files.length; i++) {
+                formData.append(files[i].name, files[i]);
+            }
             const fileUploadResult = await fetch(`/upload/files`, { method: `POST`, body: formData });
             console.log(`Success : `, fileUploadResult);
-        } catch (error) {
-            console.warn(`Cannot upload file because of this error : >`, error);
+            location.reload();
         }
-
+    } catch (error) {
+        console.warn(`Cannot upload file because of this error : >`, error);
     }
-})
+});
+
+// For click for the file upload ...
+$(`#file-upload-area`).on(`click`, () => {
+    $(`#imageUploadInput`).trigger(`click`);
+});
+
+$(`#imageUploadInput`).change(async (event) => {
+    try {
+        const files = event.target.files;
+        if (files.length > 0) {
+            let formData = new FormData();
+            for (let i = 0; i < files.length; i++) {
+                formData.append(files[i].name, files[i]);
+            }
+            const fileUploadResult = await fetch(`/upload/files`, { method: `POST`, body: formData });
+            console.log(`Success : `, fileUploadResult);
+            location.reload();
+        }
+    } catch (error) {
+        console.warn(`Error in uploading file : `, error);
+    }
+});

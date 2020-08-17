@@ -7,6 +7,9 @@ a {
     color: #00B7FF;
 }
 
+#file-upload-area{
+    cursor: pointer;
+}
 
 .usable-space {
     margin-top: 5%;
@@ -64,6 +67,18 @@ button[disabled="false"]:hover .next {
 
 .font-small {
     font-size: 10px !important;
+}
+
+#footer-name{
+    border: 1px solid gray;
+    bottom: 0;
+    padding: 10px;
+    position: absolute;
+    width: 100%;
+}
+
+#footer-name p{
+    text-align: center;
 }
 
 
